@@ -3,34 +3,20 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../model/news.dart';
 import '../utils/modifed_text.dart';
+import '../utils/utils.dart';
 
 
 
 class NewsWidget extends StatelessWidget {
   final News news;
 
-  NewsWidget({required this.news}) : super();
-  @override
-  
-  String? getTitle(int index){
+  const NewsWidget({super.key, required this.news});
 
-    String? text=news.data?.newsStories?[index].title;
-    debugPrint(text);
-    text=text?.replaceAll(RegExp(r'<em>'), '');
-    text=text?.replaceAll(RegExp(r'</em>'), '');
-    text=text?.replaceAll(RegExp(r'<I>'), '');
-    text=text?.replaceAll(RegExp(r'</i>'), '');
-    text=text?.replaceAll(RegExp(r'&#\d*;'), ' ');
-    text=text?.replaceAll(RegExp(r'&\w*;'), ' ');
-    debugPrint(text);
-
-    return text;
-  }
 
   
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -38,7 +24,7 @@ class NewsWidget extends StatelessWidget {
             text: 'News',
             size: 26, color: Colors.white,
           ),
-          SizedBox(height:5),
+          const SizedBox(height:5),
           Container(
               height: 270,
               child: ListView.builder(
@@ -65,6 +51,7 @@ class NewsWidget extends StatelessWidget {
                           children: [
                             Container(
                               width:120,
+                              height: 100,
                               child: FadeInImage(
                                 image:NetworkImage(news.data?.newsStories?[index].mainImage?.url ?? 'assets/images/news.png' ),
                                 placeholder: const AssetImage('assets/images/news.png'),
@@ -75,18 +62,15 @@ class NewsWidget extends StatelessWidget {
                                 },
                                 fit: BoxFit.fitWidth,
                               ),
-                              height: 100,
                             ),
-                            SizedBox(height: 5),
-                            Container(
-                              child: Text(
-                                 getTitle(index) ?? '',
-                                  style: GoogleFonts.roboto(
-                                    color: Colors.grey,
-                                    fontSize: 15,
-                                  ),
-                                  textAlign: TextAlign.center),
-                            )
+                            const SizedBox(height: 5),
+                            Text(
+                               getTitle(news,index) ?? '',
+                                style: GoogleFonts.roboto(
+                                  color: Colors.grey,
+                                  fontSize: 15,
+                                ),
+                                textAlign: TextAlign.center)
                           ],
                         ),
                       ),

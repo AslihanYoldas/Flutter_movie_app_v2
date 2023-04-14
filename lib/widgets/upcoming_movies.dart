@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movieapi_v2/cubit/movie_features/movie_view.dart';
+import 'package:flutter_movieapi_v2/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../model/upcoming_movies.dart';
 import '../utils/modifed_text.dart';
@@ -10,27 +11,12 @@ class UpcomingMoviesWidget extends StatelessWidget {
   final UpcomingMovies upcoming;
 
 
-  double getNameSize(int index){
-    int str_len=upcoming.data?.upcoming![index].name?.length ?? 0;
-    if(str_len > 60 ){
-      return 10;
 
-
-    }
-    else{
-
-        return 15;
-
-
-    }
-  }
-
-
-  UpcomingMoviesWidget({required this.upcoming}) : super();
+  const UpcomingMoviesWidget({super.key, required this.upcoming});
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -38,7 +24,7 @@ class UpcomingMoviesWidget extends StatelessWidget {
             text: 'Upcoming Movies',
             size: 26, color: Colors.white,
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
               height:270,
               child: ListView.builder(
@@ -73,16 +59,14 @@ class UpcomingMoviesWidget extends StatelessWidget {
                                 fit: BoxFit.fitHeight,
                               ),
                             ),
-                            SizedBox(height: 5),
-                            Container(
-                              child: Text( upcoming.data?.upcoming?[index].name ?? ''
+                            const SizedBox(height: 5),
+                            Text( upcoming.data?.upcoming?[index].name ?? ''
 
                     , style: GoogleFonts.roboto(
-                                color: Colors.grey,
-                                fontSize: getNameSize(index),
-                              ),
-                                  textAlign: TextAlign.center),
-                            )
+                              color: Colors.grey,
+                              fontSize: getNameSizeUpcoming(upcoming,index),
+                            ),
+                                textAlign: TextAlign.center)
                           ],
                         ),
                       ),

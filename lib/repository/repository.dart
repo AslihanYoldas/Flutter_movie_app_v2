@@ -17,9 +17,7 @@ class Repository {
 
   Future<SearchResult?> fetchSearchResult(String q) async {
     try{
-      debugPrint('Repo $q');
       SearchResult? response= await _api.getSearchResult(q);
-      debugPrint('Repo ${response.data.search.movies[0].name}');
 
       return response;
 
@@ -44,7 +42,6 @@ class Repository {
   Future<News?> fetchNews() async {
     try{
       News data= await _api.getNews();
-      debugPrint('$data' );
       return data;
     }
     catch(e){
@@ -76,9 +73,7 @@ class Repository {
 
   Future<MovieDetail?>  fetchMovieDetail( String detailId) async {
     try{
-      debugPrint(detailId);
       MovieDetail data= (await _api.getMovieDetail(detailId));
-      debugPrint(data.data?.movie?.name);
       return data;
     }
     catch(e){

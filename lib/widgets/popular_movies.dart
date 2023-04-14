@@ -1,36 +1,20 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../cubit/movie_features/movie_view.dart';
 import '../model/popular_movies.dart';
 import '../utils/modifed_text.dart';
+import '../utils/utils.dart';
 
 
 
 class PopularMoviesWidget extends StatelessWidget {
   final PopularMovies popular;
 
-  double getNameSize(int index){
-    int str_len=popular.data?.popularity![index].name?.length ?? 0;
-    if(str_len > 60 ){
-      return 10;
-
-
-    }
-    else{
-
-      return 15;
-
-
-    }
-  }
-
-
-  PopularMoviesWidget({required this.popular}) : super();
+  const PopularMoviesWidget({super.key, required this.popular});
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -38,7 +22,7 @@ class PopularMoviesWidget extends StatelessWidget {
             text: 'Popular Movies',
             size: 26, color: Colors.white,
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
               height: 270,
               child: ListView.builder(
@@ -72,15 +56,15 @@ class PopularMoviesWidget extends StatelessWidget {
                                 fit: BoxFit.fitHeight,
                               ),
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
 
 
                             Text(
-                                popular!.data?.popularity![index].name
+                                popular.data?.popularity![index].name
                                     as String,
                                 style: GoogleFonts.roboto(
                                   color: Colors.grey,
-                                  fontSize: getNameSize(index),
+                                  fontSize: getNameSizePopular(popular,index),
                                 ),
                                 textAlign: TextAlign.center)
                           ],

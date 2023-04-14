@@ -4,27 +4,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movieapi_v2/cubit/search_feautures/search_cubit.dart';
 import 'package:flutter_movieapi_v2/cubit/search_feautures/search_states.dart';
 import 'package:flutter_movieapi_v2/widgets/search_list.dart';
-import 'package:flutter_movieapi_v2/widgets/search_bar.dart';
-import '../../dependency_injection/locator.dart';
-import '../movie_features/movie_view.dart';
-import 'package:flutter_movieapi_v2/model/search_result.dart';
+import '../../utils/utils.dart';
 
 class SearchPage extends StatefulWidget {
 
   String? query;
 
-  SearchPage(this.query);
+  SearchPage(this.query, {super.key});
 
   @override
-  State<SearchPage> createState() => _SearchPageState(this.query);
+  State<SearchPage> createState() => _SearchPageState(query);
 }
 
 class _SearchPageState extends State<SearchPage> {
   String? query;
 
   _SearchPageState(this.query);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,16 +53,11 @@ class _SearchPageState extends State<SearchPage> {
                 final error = state as ErrorState;
                 return buildError(error);
               }
-              return Text("");
+              return buildLoading();
             },
     );
   }
 
-  Center buildLoading() {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  }
 
   Center buildError(ErrorState error) {
     return Center(

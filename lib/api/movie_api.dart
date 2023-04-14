@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter_movieapi_v2/model/news.dart';
 import 'package:flutter_movieapi_v2/model/search_result.dart';
 import 'package:flutter_movieapi_v2/model/upcoming_movies.dart';

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_movieapi_v2/cubit/search_feautures/search_view.dart';
 import 'package:flutter_movieapi_v2/model/news.dart';
 import 'package:flutter_movieapi_v2/model/popular_movies.dart';
 import 'package:flutter_movieapi_v2/model/upcoming_movies.dart';
@@ -15,10 +13,10 @@ class HomeSuccess extends StatefulWidget {
   final PopularMovies? popular;
   final UpcomingMovies? upcoming;
 
-  HomeSuccess(this.news,this.popular,this.upcoming);
+  HomeSuccess(this.news,this.popular,this.upcoming, {super.key});
 
   @override
-  State<HomeSuccess> createState() => _HomeSuccessState(this.news!,this.popular!,this.upcoming!);
+  State<HomeSuccess> createState() => _HomeSuccessState(news!,popular!,upcoming!);
 }
 
 class _HomeSuccessState extends State<HomeSuccess> {
@@ -32,10 +30,7 @@ class _HomeSuccessState extends State<HomeSuccess> {
 
   _HomeSuccessState(this.news,this.popular,this.upcoming);
 
-  @override
-  void initState() {
 
-  }
   void _navigateBottomBar(int index){
     setState(() {
       _selectedIndex=index;
@@ -50,7 +45,7 @@ class _HomeSuccessState extends State<HomeSuccess> {
         NewsWidget(news: news)
       ],
     ),
-   SearchBarWidget()
+   const SearchBarWidget()
   ];
 
   @override
@@ -58,18 +53,18 @@ class _HomeSuccessState extends State<HomeSuccess> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.blueGrey[800],
         centerTitle: true,
-        title: Text("Movie App"),
+        title: const Text("Movie App"),
       ),
       bottomNavigationBar:BottomNavigationBar(
 
-        backgroundColor: Colors.blueGrey[900],
+        backgroundColor: Colors.blueGrey[800],
         selectedItemColor:Colors.amber ,
         currentIndex: _selectedIndex,
         onTap:_navigateBottomBar,
         type: BottomNavigationBarType.fixed,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home),label:'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search),label:'Search')
         ],

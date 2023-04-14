@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movieapi_v2/model/search_result.dart';
 
@@ -8,10 +7,10 @@ class SearchListWidget extends StatefulWidget {
   SearchResult? searchResult;
 
 
-  SearchListWidget(this.searchResult);
+  SearchListWidget(this.searchResult, {super.key});
 
   @override
-  State<SearchListWidget> createState() => _SearchListWidgetState(this.searchResult);
+  State<SearchListWidget> createState() => _SearchListWidgetState(searchResult);
 
 }
 
@@ -32,13 +31,13 @@ class _SearchListWidgetState extends State<SearchListWidget> {
         appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: true,
-        title: Text("Movie App"),
+        title: const Text("Movie App"),
     ),
     body:Container(
       color: Colors.black,
       child: ListView.builder(
 
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           shrinkWrap: true,
           itemCount: searchResult?.data.search.movies.length,
           itemBuilder: (context, index) {
@@ -60,11 +59,11 @@ class _SearchListWidgetState extends State<SearchListWidget> {
               child: Container(
                 color: Colors.black,
                 child: ListTile(
-                    contentPadding: EdgeInsets.all(8.0),
+                    contentPadding: const EdgeInsets.all(8.0),
 
                     title: Text(
                       "${post?.data.search.movies[index].name}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                       ),

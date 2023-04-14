@@ -3,6 +3,8 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+import '../utils/modifed_text.dart';
+
 class VideoWidget extends StatefulWidget {
   // This will contain the URL/asset path which we want to play
   final VideoPlayerController videoPlayerController;
@@ -34,11 +36,11 @@ class _VideoWidgetState extends State<VideoWidget> {
       // Errors can occur for example when trying to play a video
       // from a non-existent URL
       errorBuilder: (context, errorMessage) {
-        return Center(
-          child: Text(
-            errorMessage,
-            style: TextStyle(color: Colors.white),
-          ),
+        debugPrint(" VIDEO ERROR $errorMessage");
+        return Container(
+          margin: EdgeInsets.fromLTRB(80.0, 80.0, 0, 0),
+
+               child: modified_text(text:'Trailer not found',size:30,color: Colors.blueGrey),
         );
       },
     );

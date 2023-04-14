@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movieapi_v2/view/home_success_view.dart';
+import '../../utils/utils.dart';
 import 'home_cubit.dart';
 import 'home_states.dart';
 
@@ -22,6 +23,7 @@ class HomePage extends StatelessWidget {
 
   Scaffold buildScaffold() {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {
 
@@ -48,12 +50,6 @@ class HomePage extends StatelessWidget {
 
         },
       ),
-    );
-  }
-
-  Center buildLoading() {
-    return const Center(
-      child: CircularProgressIndicator(),
     );
   }
 
