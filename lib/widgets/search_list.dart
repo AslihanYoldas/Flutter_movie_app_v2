@@ -23,8 +23,6 @@ class _SearchListWidgetState extends State<SearchListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(searchResult?.data.search.movies[0].name);
-    debugPrint(searchResult?.data.search.movies[0].posterImage?.url);
 
     return Scaffold(
         backgroundColor: Colors.black,

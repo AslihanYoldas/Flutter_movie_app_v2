@@ -108,9 +108,9 @@ class Popularity {
 
 class PosterImage {
   String? url;
-  Null? type;
-  Null? width;
-  Null? height;
+  String? type;
+  int? width;
+  int? height;
 
   PosterImage({this.url, this.type, this.width, this.height});
 
@@ -172,7 +172,7 @@ class IconImage {
 
 class UserRating {
   int? dtlLikedScore;
-  Null? dtlWtsScore;
+  int? dtlWtsScore;
   IconImage? iconImage;
 
   UserRating({this.dtlLikedScore, this.dtlWtsScore, this.iconImage});
@@ -200,7 +200,6 @@ class Opening {
   String? emsId;
   String? emsVersionId;
   String? name;
-  Null? sortEms;
   PosterImage? posterImage;
   TomatoRating? tomatoRating;
   UserRating? userRating;
@@ -209,7 +208,6 @@ class Opening {
       {this.emsId,
         this.emsVersionId,
         this.name,
-        this.sortEms,
         this.posterImage,
         this.tomatoRating,
         this.userRating});
@@ -218,7 +216,6 @@ class Opening {
     emsId = json['emsId'];
     emsVersionId = json['emsVersionId'];
     name = json['name'];
-    sortEms = json['sortEms'];
     posterImage = json['posterImage'] != null
         ? new PosterImage.fromJson(json['posterImage'])
         : null;
@@ -235,7 +232,6 @@ class Opening {
     data['emsId'] = this.emsId;
     data['emsVersionId'] = this.emsVersionId;
     data['name'] = this.name;
-    data['sortEms'] = this.sortEms;
     if (this.posterImage != null) {
       data['posterImage'] = this.posterImage!.toJson();
     }
@@ -251,7 +247,7 @@ class Opening {
 
 class UserRatingPopular {
   int? dtlLikedScore;
-  Null? dtlWtsScore;
+  int? dtlWtsScore;
   int? dtlWtsCount;
   int? dtlScoreCount;
   IconImage? iconImage;

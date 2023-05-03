@@ -11,10 +11,8 @@ class SearchCubit extends Cubit<SearchStates> {
   Future<void> fetchSearchResults(q)   async {
     emit(LoadingState());
     try {
-      debugPrint('Search cubit query :$q' );
       final response = await  _repository.fetchSearchResult(q);
-      debugPrint('Cevap geldi $response');
-      debugPrint('Cevap geldi ${response?.data.search.movies[0].name}');
+
       emit(ResponseState(response!));
     }
 

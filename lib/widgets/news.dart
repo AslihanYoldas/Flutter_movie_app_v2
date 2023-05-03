@@ -29,7 +29,7 @@ class NewsWidget extends StatelessWidget {
               height: 270,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: news.data?.newsStories?.length,
+                  itemCount: (news.data?.newsStories?.length??0) < 20 ? news.data?.newsStories?.length:20,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: ()   async {
@@ -46,11 +46,11 @@ class NewsWidget extends StatelessWidget {
 
                       },
                       child: Container(
-                        width: 160,
+                        width: 180,
                         child: Column(
                           children: [
                             Container(
-                              width:120,
+                              width:160,
                               height: 100,
                               child: FadeInImage(
                                 image:NetworkImage(news.data?.newsStories?[index].mainImage?.url ?? 'assets/images/news.png' ),
@@ -64,13 +64,16 @@ class NewsWidget extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 5),
-                            Text(
-                               getTitle(news,index) ?? '',
-                                style: GoogleFonts.roboto(
-                                  color: Colors.grey,
-                                  fontSize: 15,
-                                ),
-                                textAlign: TextAlign.center)
+                            Container(
+                              width:140,
+                              child: Text(
+                                 getTitle(news,index) ?? '',
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.grey,
+                                    fontSize: 15,
+                                  ),
+                                  textAlign: TextAlign.center),
+                            )
                           ],
                         ),
                       ),

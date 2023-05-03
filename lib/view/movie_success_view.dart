@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movieapi_v2/model/movie_detail.dart';
 import 'package:flutter_movieapi_v2/utils/utils.dart';
@@ -7,7 +6,6 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:video_player/video_player.dart';
 import '../model/review.dart';
-
 import '../utils/modifed_text.dart';
 import '../widgets/video.dart';
 
@@ -21,6 +19,14 @@ class MovieView extends StatefulWidget {
   State<MovieView> createState() => _MovieViewState(detail, review);
 }
 
+Widget halfStar(review,index) {
+  if ((review.data?.audienceReviews?.items?[index].rating ?? 0) % 1 != 0) {
+    return Icon(Icons.star_half_outlined, color:Colors.yellow[600]);
+  }
+  else {
+    return Text('');
+  }
+}
 class _MovieViewState extends State<MovieView> {
   late Review review;
   late MovieDetail detail;
@@ -303,6 +309,7 @@ class _MovieViewState extends State<MovieView> {
                   text: 'PHOTO GALLERY',
                   color: Colors.grey,
                 ),
+                SizedBox(height:10),
                 Container(
                   height: 250,
                   padding: const EdgeInsets.all(8.0),
@@ -329,13 +336,14 @@ class _MovieViewState extends State<MovieView> {
                   ),
                 ),
                 const SizedBox(
-                  height: 20.0,
+                  height: 10.0,
                 ),
                 const modified_text(
                   size: 22,
                   text: 'TRAILER',
                   color: Colors.grey,
                 ),
+                SizedBox(height:10),
                 Container(
                   height: 250,
                   child: VideoWidget(
@@ -345,40 +353,52 @@ class _MovieViewState extends State<MovieView> {
                     looping: true,
                   ),
                 ),
+                SizedBox(height:20),
                 const modified_text(
                   size: 22,
                   text: 'REVIEWS',
                   color: Colors.grey,
                 ),
                 const SizedBox(height: 20),
-                ListView.separated(
-                    separatorBuilder: (context, index) => const Divider(
-                          color: Colors.white,
-                        ),
+                ListView.builder(
+                    
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     physics: const ClampingScrollPhysics(),
                     itemCount: review.data?.audienceReviews?.items?.length ?? 0,
                     itemBuilder: (context, index) {
-                      return Container(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                modified_text(
-                                  size: 15,
-                                  text:
-                                      '⭐Rating - ${review.data?.audienceReviews?.items?[index].rating} ',
-                                  color: Colors.grey,
-                                ),
-                                const SizedBox(height: 5),
-                                modified_text(
-                                  size: 15,
-                                  text:
-                                      '${review.data?.audienceReviews?.items?[index].comment} \n',
-                                  color: Colors.grey,
-                                ),
-                              ]));
+                      return Card(
+                            margin: const EdgeInsets.all(5.0),
+                            color: Colors.blueGrey[900],
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      modified_text(
+                                        size: 15,
+                                        text: 'Rating: ${review.data?.audienceReviews?.items?[index].rating} ${'⭐'*(review.data?.audienceReviews?.items?[index].rating ?? 0).toInt()}'
+                                             ,
+                                        color: (Colors.yellow[600])!,
+                                      ),
+                                      halfStar(review,index)
+
+
+
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Container(
+                                    padding:const EdgeInsets.all(8.0),
+                                    child: modified_text(
+                                      size: 15,
+                                      text:
+                                          '${review.data?.audienceReviews?.items?[index].comment} \n',
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ]))
+                          ;
                     })
               ])
             ]));

@@ -38,20 +38,15 @@ class _SearchPageState extends State<SearchPage> {
 
               } else if (state is LoadingState) {
                 return buildLoading();
-              } else if (state is ResponseState) {
+              } else if (state is ResponseState ) {
 
                 debugPrint('Response State');
-                debugPrint('${state.searchResult?.data.search.movies[0].name}');
-                debugPrint('${state.searchResult?.data.search.movies[0].posterImage?.url}');
-                debugPrint('${state.searchResult?.data.search.movies[0].emsVersionId}');
-                debugPrint('${state.searchResult?.data.search.movies[0].emsId}');
-                //List<Movie>? movies;
-                //movies=state.searchResult?.data.search.movies;
+
 
                 return SearchListWidget(state.searchResult);
               } else {
-                final error = state as ErrorState;
-                return buildError(error);
+
+                return buildError();
               }
               return buildLoading();
             },
@@ -59,9 +54,9 @@ class _SearchPageState extends State<SearchPage> {
   }
 
 
-  Center buildError(ErrorState error) {
+  Center buildError() {
     return Center(
-      child: Text(error.message),
+      child: Text(''),
     );
   }
 }

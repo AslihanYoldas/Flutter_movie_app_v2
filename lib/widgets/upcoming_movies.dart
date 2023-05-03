@@ -12,6 +12,7 @@ class UpcomingMoviesWidget extends StatelessWidget {
 
 
 
+
   const UpcomingMoviesWidget({super.key, required this.upcoming});
   @override
   Widget build(BuildContext context) {
@@ -24,12 +25,12 @@ class UpcomingMoviesWidget extends StatelessWidget {
             text: 'Upcoming Movies',
             size: 26, color: Colors.white,
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 30),
           Container(
               height:270,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: upcoming.data?.upcoming?.length,
+                  itemCount: (upcoming.data?.upcoming?.length??0) < 20 ? upcoming.data?.upcoming?.length:20,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
@@ -48,23 +49,24 @@ class UpcomingMoviesWidget extends StatelessWidget {
                           children: [
                             Container(
                               height:200,
+                              width:140,
                               child: FadeInImage(
                                 image:NetworkImage(upcoming.data?.upcoming?[index].posterImage?.url ?? 'assets/images/movie.png' ),
                                 placeholder: const AssetImage('assets/images/movie.png'),
                                 imageErrorBuilder:(context, error, stackTrace) {
                                   return Image.asset('assets/images/movie.png',
-                                      fit: BoxFit.fitHeight
+                                      fit: BoxFit.cover
                                   );
                                 },
-                                fit: BoxFit.fitHeight,
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            const SizedBox(height: 5),
+                            const SizedBox(height: 15),
                             Text( upcoming.data?.upcoming?[index].name ?? ''
 
                     , style: GoogleFonts.roboto(
                               color: Colors.grey,
-                              fontSize: getNameSizeUpcoming(upcoming,index),
+                              fontSize: (upcoming.data?.upcoming![index].name?.length ?? 0) >60 ? 10 :15,
                             ),
                                 textAlign: TextAlign.center)
                           ],

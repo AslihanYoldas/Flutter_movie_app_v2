@@ -22,12 +22,12 @@ class PopularMoviesWidget extends StatelessWidget {
             text: 'Popular Movies',
             size: 26, color: Colors.white,
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 30),
           Container(
               height: 270,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: popular.data?.popularity?.length,
+                  itemCount: (popular.data?.popularity?.length??0) < 20 ? popular.data?.popularity?.length:20,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
@@ -45,18 +45,19 @@ class PopularMoviesWidget extends StatelessWidget {
                           children: [
                             Container(
                               height: 200,
+                              width:140,
                               child: FadeInImage(
                                 image:NetworkImage(popular.data?.popularity?[index].posterImage?.url ?? 'assets/images/movie.png' ),
                                 placeholder: const AssetImage('assets/images/movie.png'),
                                 imageErrorBuilder:(context, error, stackTrace) {
                                   return Image.asset('assets/images/movie.png',
-                                      fit: BoxFit.fitHeight
+                                      fit: BoxFit.cover
                                   );
                                 },
-                                fit: BoxFit.fitHeight,
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            const SizedBox(height: 5),
+                            const SizedBox(height: 15),
 
 
                             Text(
@@ -64,7 +65,7 @@ class PopularMoviesWidget extends StatelessWidget {
                                     as String,
                                 style: GoogleFonts.roboto(
                                   color: Colors.grey,
-                                  fontSize: getNameSizePopular(popular,index),
+                                  fontSize: (popular.data?.popularity![index].name?.length ?? 0) >60 ? 10:15,
                                 ),
                                 textAlign: TextAlign.center)
                           ],

@@ -57,21 +57,4 @@ String? getTitle(News news,int index){
 
   return text;
 }
-double getNameSizePopular(PopularMovies popular,int index){
-  int strLen=popular.data?.popularity![index].name?.length ?? 0;
-  if(strLen > 60 ){
-    return 10;
-  }
-  else{
-    return 15;
-  }
-}
-double getNameSizeUpcoming(UpcomingMovies upcoming,int index){
-  int strLen=upcoming.data?.upcoming![index].name?.length ?? 0;
-  if(strLen > 60 ){
-    return 10;
-  }
-  else{
-    return 15;
-  }
-}
+
