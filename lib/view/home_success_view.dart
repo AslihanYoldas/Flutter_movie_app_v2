@@ -4,7 +4,6 @@ import 'package:flutter_movieapi_v2/model/popular_movies.dart';
 import 'package:flutter_movieapi_v2/model/upcoming_movies.dart';
 import 'package:flutter_movieapi_v2/widgets/search_bar.dart';
 import 'package:flutter_movieapi_v2/widgets/upcoming_movies.dart';
-
 import '../widgets/news.dart';
 import '../widgets/popular_movies.dart';
 
@@ -20,17 +19,12 @@ class HomeSuccess extends StatefulWidget {
 }
 
 class _HomeSuccessState extends State<HomeSuccess> {
-
-
   int _selectedIndex=0;
   News news;
   PopularMovies popular;
   UpcomingMovies upcoming;
 
-
   _HomeSuccessState(this.news,this.popular,this.upcoming);
-
-
   void _navigateBottomBar(int index){
     setState(() {
       _selectedIndex=index;

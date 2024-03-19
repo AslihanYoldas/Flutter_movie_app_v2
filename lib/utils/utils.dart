@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movieapi_v2/model/movie_detail.dart';
 
 import '../model/news.dart';
-import '../model/popular_movies.dart';
-import '../model/upcoming_movies.dart';
 import 'modifed_text.dart';
 
 Center buildLoading() {
