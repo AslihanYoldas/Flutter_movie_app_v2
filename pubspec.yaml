@@ -41,7 +41,7 @@ dependencies:
   cached_network_image: ^3.2.3
   url_launcher: ^6.1.10
   photo_view: ^0.14.0
-
+  test: ^1.20.0
 
 
   # The following adds the Cupertino Icons font to your application.
